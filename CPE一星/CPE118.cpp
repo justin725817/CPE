@@ -1,4 +1,4 @@
-// 學習MAP使用方法//HARD
+//HARD
 #include <iostream>
 #include <map>
 using namespace std;
