@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main()
-{
-    //想不出來
+int main(){
+    //跳過
 }
