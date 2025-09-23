@@ -1,23 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 int main()
 {
     int n;
     while (cin >> n)
     {
-        int a[n];
+        vector<int> s(n);
         for (int i = 0; i < n; i++)
         {
-            cin >> a[i];
+            cin >> s[i];
         }
-        sort(a, a + n);
-        int mid1 = a[(n - 1) / 2];
-        int mid2 = a[n / 2];
-        int ans = 0;
+        sort(s.begin(), s.end());
+        int mid1, mid2, ans = 0;
+        mid1 = s[(n - 1) / 2];
+        mid2 = s[n / 2];
         for (int i = 0; i < n; i++)
         {
-            if (a[i] == mid1 || a[i] == mid2)
+            if (s[i] == mid1 || s[i] == mid2)
+            {
                 ans++;
+            }
         }
         cout << mid1 << " " << ans << " " << mid2 - mid1 + 1 << "\n";
     }

@@ -4,24 +4,34 @@ using namespace std;
 
 int main()
 {
-
-    int num;
-    cin >> num;
-    while (num--)
+    int T, N;
+    cin >> T;
+    while (T--)
     {
-        int n;
-        cin >> n;
-        bitset<16> x1(n);          // 創立一個空間，並初始化(將n轉成二進位並儲存至x1)
-        int count_x1 = x1.count(); // bitset內建函式，可以計算bitset裡總共有多少1
-        int hex = 0;               // 儲存16進位轉換成10進位的數
-        // 16進制轉10進制
-        for (int i = 0; n > 0; i++)
+        cin >> N;
+        int X1 = N;
+        int b1 = 0;
+        while (X1)
         {
-            hex += (n % 10) * pow(16, i);
-            n = n / 10;
+            b1 += X1 & 1;
+            X1 >>= 1;
         }
-        bitset<16> x2(hex);        // 初始化
-        int count_x2 = x2.count(); // bitset內建函式，可以計算bitset裡總共有多少1
-        cout << count_x1 << " " << count_x2 << endl;
+        int X2 = 0;
+        int mul = 1;
+        X1 = N;
+        while (X1)
+        {
+            X2 += (X1 % 10) * mul;
+            X1 /= 10;
+            mul *= 16;
+        }
+        int b2 = 0;
+        while (X2)
+        {
+            b2 += X2 & 1;
+            X2 >>= 1;
+        }
+        cout << b1 << " " << b2 << "\n";
     }
+    return 0;
 }

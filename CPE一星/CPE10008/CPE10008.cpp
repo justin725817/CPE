@@ -1,19 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
-//先輸入次數，將各次字串合成轉成大寫，用數字判斷單字
-//先輸入次數，vector string
-
-class Solution{
-    public:
-        void cryptographic(vector<string> &s ,int nums){
-            
-        }
-
-};
+// 先輸入次數，將各次字串合成轉成大寫，用數字判斷單字
+// 先輸入次數，vector string
+bool cmp(pair<int, char> a, pair<int, char> b)
+{
+    if (a.first != b.first)
+        return a.first > b.first;
+    else
+        return a.second < b.second;
+}
 
 int main()
 {
-    int nums;
-    cin>>nums;
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    vector<pair<int, char>> v(26);
+    for (int i = 0; i < 26; i++)
+    {
+        v[i] = {0, 'A' + i};
+    }
+    int n;
+    string s;
+    cin >> n;
+    getline(cin, s); // clear buffer (\n)
+    while (n--)
+    {
+        getline(cin, s);
+        for (int i = 0; i < s.size(); i++)
+        {
+            if ('A' <= s[i] && s[i] <= 'Z')
+            {
+                v[s[i] - 'A'].first++;
+            }
+            if ('a' <= s[i] && s[i] <= 'z')
+            {
+                v[s[i] - 'a'].first++;
+            }
+        }
+    }
+    sort(v.begin(), v.end(), cmp);
+    for (auto i : v)
+    {
+        if (i.first > 0)
+            cout << i.second << " " << i.first << "\n";
+    }
+    return 0;
 }
-

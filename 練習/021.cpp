@@ -1,20 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 上下左右，斜角
-int dx{1, -1, 0, 0, -1, 1, -1, 1};
-int dy{0, 0, 1, -1, 1, 1, -1, -1};
+int dx[] = {1, -1, 0, 0, 1, 1, -1, -1};
+int dy[] = {0, 0, 1, -1, 1, -1, 1, -1};
 
 int main()
 {
-    int n, m, Case = 1;
+    int n, m;
+    int count = 1;
     while (cin >> n >> m)
     {
+        vector<vector<char>> a(n, vector<char>(m));
         if (n == 0 && m == 0)
         {
             break;
         }
-        vector<vector<char>> a(n, vector<char>(m));
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
@@ -22,12 +22,10 @@ int main()
                 cin >> a[i][j];
             }
         }
-
         vector<vector<int>> b(n, vector<int>(m, 0));
-
         for (int i = 0; i < n; i++)
         {
-            for (int j = 0; i < m; j++)
+            for (int j = 0; j < m; j++)
             {
                 if (a[i][j] == '*')
                 {
@@ -39,7 +37,7 @@ int main()
                     {
                         int x = i + dx[k];
                         int y = j + dy[k];
-                        if (x >= 0 && x <= n && y >= 0 && y <= m && a[x][y] == '*')
+                        if (x >= 0 && x < n && y >= 0 && y < m && a[x][y] == '*')
                         {
                             b[i][j]++;
                         }
@@ -47,21 +45,23 @@ int main()
                 }
             }
         }
-        if (Case > 1)
-        {
-            cout << "\n";
-        }
-        cout << "Field #" << Case++ << ":\n";
+        cout << "Field #" << count++ << ":\n";
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
             {
                 if (b[i][j] == -1)
+                {
                     cout << '*';
+                }
                 else
+                {
                     cout << b[i][j];
+                }
             }
             cout << "\n";
         }
     }
+
+    return 0;
 }
