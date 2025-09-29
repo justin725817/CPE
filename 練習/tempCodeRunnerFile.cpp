@@ -1,36 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool cmp(pair<int, int> a, pair<int, int> b)
-{
-    if (a.first != b.first)
-    {
-        return a.first < b.first;
-    }
-    else
-    {
-        return a.second > b.second;
-    }
-}
 int main()
 {
     string s;
+    vector<int> a;
     while (getline(cin, s))
     {
-        vector<pair<int, int>> a(256);
-        for (int i = 0; i < 256; i++)
+        a.clear();
+        int count = 1;
+        int ans = 0;
+        if (s == "0")
         {
-            a[i] = { 0,
-                     i }
+            break;
         }
         for (int i = 0; i < s.size(); i++)
         {
-            a[(int)s[i]].first++;
+            a.push_back(s[i] - '0');
+            ans += (s[i] - '0');
         }
-        sort(a.begin(), a.end(), cmp);
-        for (auto k : a)
+        if (ans % 9 == 0)
         {
-            cout << k.second << " " << k.first << "\n";
+            while (ans != 9)
+            {
+                int tmp = 0;
+                while (ans > 0)
+                {
+                    tmp += ans % 10;
+                    ans / 10;
+                }
+                ans = tmp;
+                count++;
+            }
+
+            cout << s << " is a multiple of 9 and has 9-degree " << count << ".\n";
+        }
+        else
+        {
+
+            cout << s << " is not a multiple of 9.\n";
         }
     }
 }

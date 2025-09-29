@@ -3,59 +3,41 @@ using namespace std;
 
 int main()
 {
-    int n;
     string s;
-    while (cin >> n)
+    while (getline(cin, s))
     {
-        if (n == 0)
+        int count = 1;
+        int ans = 0;
+        if (s == "0")
         {
             break;
         }
-        map<string, int> mp;
-        mp["top"] = 1;
-        mp["north"] = 2;
-        mp["west"] = 3;
-        mp["east"] = 4;
-        mp["south"] = 5;
-        mp["bottom"] = 6;
 
-        while (n--)
+        // 計算初始數字和
+        for (int i = 0; i < s.size(); i++)
         {
-            cin >> s;
-            if (s == "east")
-            {
-                int tmp = mp["east"];
-                mp["east"] = mp["top"];
-                mp["top"] = mp["west"];
-                mp["west"] = mp["bottom"];
-                mp["bottom"] = tmp;
-            }
-            if (s == "south")
-            {
-                int tmp = mp["south"];
-                mp["south"] = mp["top"];
-                mp["top"] = mp["north"];
-                mp["north"] = mp["bottom"];
-                mp["bottom"] = tmp;
-            }
-            if (s == "west")
-            {
-                int tmp = mp["west"];
-                mp["west"] = mp["top"];
-                mp["top"] = mp["east"];
-                mp["east"] = mp["bottom"];
-                mp["bottom"] = tmp;
-            }
-            if (s == "north")
-            {
-                int tmp = mp["north"];
-                mp["north"] = mp["top"];
-                mp["top"] = mp["south"];
-                mp["south"] = mp["bottom"];
-                mp["bottom"] = tmp;
-            }
+            ans += (s[i] - '0');
         }
-        cout << mp["top"] << "\n";
+
+        if (ans % 9 == 0)
+        {
+            while (ans != 9)
+            {
+                int tmp = 0;
+                while (ans > 0)
+                {
+                    tmp += ans % 10;
+                    ans /= 10; // ★ 這裡修正
+                }
+                ans = tmp;
+                count++;
+            }
+
+            cout << s << " is a multiple of 9 and has 9-degree " << count << ".\n";
+        }
+        else
+        {
+            cout << s << " is not a multiple of 9.\n";
+        }
     }
-    return 0;
 }
