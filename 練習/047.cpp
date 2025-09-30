@@ -5,7 +5,8 @@ using namespace std;
 int GCD(int x, int y)
 {
     while ((x %= y) && (y %= x))
-        return x + y;
+        ;
+    return x + y;
 }
 
 int main()
