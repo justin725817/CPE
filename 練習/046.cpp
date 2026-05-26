@@ -38,7 +38,7 @@ int main()
                     break;
                 }
             }
-        }
+        } 
         if (flag)
             cout << "Symmetric.\n";
         else

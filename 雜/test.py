@@ -57,20 +57,25 @@
 #     except:
 #         break
 
-while True:
-    try:
-        nums=list(map(int,input().split()))
-        if not nums:
-            break
-        n = nums[0]       
-        scores = nums[1:]
-        if len(scores) != n:
-            print("資料數量錯誤")
-            continue
-        avg = sum(scores) / n
-        if avg > 59:
-            print("yes")
-        else:
-            print("no")
-    except:
-        break
+# while True:
+#     try:
+#         nums=list(map(int,input().split()))
+#         if not nums:
+#             break
+#         n = nums[0]       
+#         scores = nums[1:]
+#         if len(scores) != n:
+#             print("資料數量錯誤")
+#             continue
+#         avg = sum(scores) / n
+#         if avg > 59:
+#             print("yes")
+#         else:
+#             print("no")
+#     except:
+#         break
+
+
+r=int(input())
+for i in range(r):
+    s=[]
